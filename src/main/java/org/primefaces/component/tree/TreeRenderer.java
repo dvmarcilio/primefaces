@@ -23,8 +23,14 @@
  */
 package org.primefaces.component.tree;
 
+import static org.primefaces.component.api.UITree.ROOT_ROW_KEY;
+
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
@@ -35,14 +41,17 @@ import javax.faces.context.ResponseWriter;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.component.api.UITree;
+import org.primefaces.model.MatchMode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.model.filter.FilterConstraint;
 import org.primefaces.renderkit.CoreRenderer;
 import org.primefaces.renderkit.RendererUtils;
-import org.primefaces.util.*;
-
-import static org.primefaces.component.api.UITree.ROOT_ROW_KEY;
-import org.primefaces.model.MatchMode;
+import org.primefaces.util.ComponentUtils;
+import org.primefaces.util.HTML;
+import org.primefaces.util.LangUtils;
+import org.primefaces.util.LocaleUtils;
+import org.primefaces.util.SharedStringBuilder;
+import org.primefaces.util.WidgetBuilder;
 
 public class TreeRenderer extends CoreRenderer {
 
@@ -162,6 +171,8 @@ public class TreeRenderer extends CoreRenderer {
             tree.setRowKey(dropNodeRowKey);
             dropNode = tree.getRowNode();
         }
+
+        if (dropNode == null) throw new IllegalStateException();
 
         tree.setDropNode(dropNode);
 

@@ -61,13 +61,13 @@ public class RowExpandFeature implements DataTableFeature {
         RowExpansion rowExpansion = table.getRowExpansion();
 
         String styleClass = DataTable.EXPANDED_ROW_CONTENT_CLASS + " ui-widget-content";
-        if (rowExpansion.getStyleClass() != null) {
+        if (rowExpansion != null && rowExpansion.getStyleClass() != null) {
             styleClass = styleClass + " " + rowExpansion.getStyleClass();
         }
 
         table.setRowIndex(rowIndex);
 
-        if (rowExpansion.isRendered()) {
+        if (rowExpansion != null && rowExpansion.isRendered()) {
             if (rowIndexVar != null) {
                 context.getExternalContext().getRequestMap().put(rowIndexVar, rowIndex);
             }
@@ -78,7 +78,7 @@ public class RowExpandFeature implements DataTableFeature {
             writer.startElement("td", null);
             writer.writeAttribute("colspan", table.getColumnsCount(), null);
 
-            table.getRowExpansion().encodeAll(context);
+            rowExpansion.encodeAll(context);
 
             writer.endElement("td");
 

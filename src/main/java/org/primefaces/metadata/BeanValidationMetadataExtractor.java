@@ -83,7 +83,7 @@ public class BeanValidationMetadataExtractor {
                 Object base = vr.getBase();
                 Object property = vr.getProperty();
 
-                if (base != null && property != null) {
+                if (base != null && property != null && validator != null) {
                     BeanDescriptor beanDescriptor = validator.getConstraintsForClass(base.getClass());
 
                     if (beanDescriptor != null) {

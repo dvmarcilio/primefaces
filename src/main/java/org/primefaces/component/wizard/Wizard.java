@@ -77,21 +77,27 @@ public class Wizard extends WizardBase {
         decode(context);
 
         if (!isBackRequest(context) || (isUpdateModelOnPrev() && isBackRequest(context))) {
-            getStepToProcess().processDecodes(context);
+            Tab stepToProcess = getStepToProcess();
+            if (stepToProcess != null)
+            	stepToProcess.processDecodes(context);
         }
     }
 
     @Override
     public void processValidators(FacesContext context) {
         if (!isBackRequest(context) || (isUpdateModelOnPrev() && isBackRequest(context))) {
-            getStepToProcess().processValidators(context);
+        	Tab stepToProcess = getStepToProcess();
+            if (stepToProcess != null)
+            	stepToProcess.processValidators(context);
         }
     }
 
     @Override
     public void processUpdates(FacesContext context) {
         if (!isBackRequest(context) || (isUpdateModelOnPrev() && isBackRequest(context))) {
-            getStepToProcess().processUpdates(context);
+        	Tab stepToProcess = getStepToProcess();
+            if (stepToProcess != null)
+            	stepToProcess.processUpdates(context);
         }
     }
 
