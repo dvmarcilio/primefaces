@@ -1524,6 +1524,7 @@ public class DataTable extends DataTableBase {
                     sb.append("','");
                 }
                 UIColumn column = findColumn(sortMeta.getColumnKey());
+                Objects.requireNonNull(column);
                 sb.append(column.getClientId(context));
                 i++;
             }

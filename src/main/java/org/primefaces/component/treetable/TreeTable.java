@@ -354,12 +354,14 @@ public class TreeTable extends TreeTableBase {
 
         FacesContext context = getFacesContext();
         ColumnGroup headerGroup = getColumnGroup("header");
-        for (UIComponent row : headerGroup.getChildren()) {
-            for (UIComponent col : row.getChildren()) {
-                if (Objects.equals(col.getClientId(context), columnKey)) {
-                    return (UIColumn) col;
-                }
-            }
+        if (headerGroup != null) {
+	        for (UIComponent row : headerGroup.getChildren()) {
+	            for (UIComponent col : row.getChildren()) {
+	                if (Objects.equals(col.getClientId(context), columnKey)) {
+	                    return (UIColumn) col;
+	                }
+	            }
+	        }
         }
 
         throw new FacesException("Cannot find column with key: " + columnKey);

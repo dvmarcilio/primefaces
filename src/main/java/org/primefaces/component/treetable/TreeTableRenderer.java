@@ -156,13 +156,15 @@ public class TreeTableRenderer extends DataRenderer {
         if (nodeKey != null) {
             tt.setRowKey(nodeKey);
             TreeNode node = tt.getRowNode();
-            node.setExpanded(true);
+            if (node != null) {
+            	node.setExpanded(true);
 
-            if (tt.getExpandMode().equals("self")) {
-                encodeNode(context, tt, node);
-            }
-            else {
-                encodeNodeChildren(context, tt, node);
+	            if (tt.getExpandMode().equals("self")) {
+	                encodeNode(context, tt, node);
+	            }
+	            else {
+	                encodeNodeChildren(context, tt, node);
+	            }
             }
         }
         else if (tt.isFilterRequest(context)) {
